@@ -1,7 +1,7 @@
+require('dotenv').config(); // Add this at the top
 const mongoose = require('mongoose');
 const debug= require("debug")("development:mongoose");
 const config = require('config');
-require('dotenv').config(); // Add this at the top
 
 // Connect to MongoDB Atlas
 mongoose.connect(process.env.MONGO_URL, {
