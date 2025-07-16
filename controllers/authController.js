@@ -50,7 +50,9 @@ module.exports.LoginUser = async(req,res)=>{
             
         }
         else{
-            req.flash("error", "Email or password is incorrect.");
+           req.flash("error", err.message);
+            console.error(err);
+
             return res.redirect('/');
         }
     })
