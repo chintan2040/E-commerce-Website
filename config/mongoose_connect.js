@@ -1,15 +1,14 @@
 const mongoose = require('mongoose');
 const debug= require("debug")("development:mongoose");
 const config = require('config');
+require('dotenv').config(); // Add this at the top
 
-mongoose.connect(`${config.get("MONGODB_URI")}/userdb`)
-.then(()=>{
-
-    debug('Connected to MongoDB');
+// Connect to MongoDB Atlas
+mongoose.connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
 })
-.catch((err)=>{
-    debug('Error connecting to MongoDB');
-    debug(err);
-});
+.then(() => console.log('MongoDB connected successfully'))
+.catch(err => console.log('MongoDB connection error:', err));
 
 module.exports = mongoose.connection;
